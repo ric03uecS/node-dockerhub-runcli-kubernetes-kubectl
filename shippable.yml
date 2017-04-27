@@ -16,7 +16,7 @@ env:
     - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
     - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
     - DOCKER_REPO=node-build-push-docker-hub-runcli-kubernetes-kubectl
-    - DOCKER_ACC=ttrahan # replace with your registry account name
+    - DOCKER_ACC=ric03uec # replace with your registry account name
 
 build:
   ci:
@@ -44,30 +44,5 @@ integrations:
 # adding docker hub integration so that credentials are available to CI Job
 # http://docs.shippable.com/integrations/imageRegistries/dockerHub/
   hub:
-    - integrationName: ttrahan-dh # replace with your Docker Hub integration name
+    - integrationName: ric03uec-dh # replace with your Docker Hub integration name
       type: docker
-
-  # http://docs.shippable.com/ci/shippableyml/#notifications
-  notifications:
-    # turns off email for PR builds, notifies only on failure or change in status
-    # http://docs.shippable.com/integrations/notifications/email/
-    - integrationName: email
-      type: email
-      on_success: change
-      on_failure: always
-      on_pull_request: never
-
-    # # Sending webhook to notify Shippable pipeline of new image tag available
-    # # http://docs.shippable.com/tutorials/pipelines/connectingCiPipelines/
-    # # UNCOMMENT LINES BELOW THIS AFTER ADDING PIPELINE TO SPOG VIEW
-    # - integrationName: trigger-shipdemo-img
-    #   type: webhook
-    #   payload:
-    #     - versionName=$BRANCH.$BUILD_NUMBER
-    #   branches:
-    #     only:
-    #       - master
-    #   on_success: always
-    #   on_failure: never
-    #   on_start: never
-
